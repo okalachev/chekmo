@@ -100,6 +100,9 @@ while True:
         wait_prompt()
         send('re')  # reset the board
         for move in moves:
+            if len(move) == 5:
+                # pawn promotion move
+                move = move[:4] + '=' + move[-1]
             wait_prompt()
             send(move)  # make moves
     elif cmd == 'go':
