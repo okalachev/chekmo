@@ -44,6 +44,12 @@ set up the engine with Menu – Engine – Edit Engine List. Append the followin
 "CHEKMO-2" -fcp "./chekmo-uci.py" -fd "/path/to/this/repo/" -fUCI 
 ``
 
+On Debian/Ubuntu you may will need to install `polyglot` manually:
+
+``
+sudo apt-get install polyglot
+``
+
 Now you can play with CHEKMO-II via graphic interface.
 
 ![](img/xboard.png?raw=true)
