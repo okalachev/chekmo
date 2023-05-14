@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+#!/usr/bin/env python3
 
 #
 # PDP-8's CHEKMO-II chess engine UCI adapter
@@ -62,7 +62,7 @@ chekmo = Popen([which('pdp8'), pdir + '/simh-script'], stdout=PIPE, stdin=slave,
 pin = os.fdopen(master, 'w')
 atexit.register(lambda: chekmo.kill())  # kill pdp8 simulator process on exit
 
-print 'CHEKMO-II UCI ADAPTER'
+print('CHEKMO-II UCI ADAPTER')
 #dump('run with ' + ' '.join(sys.argv))
 
 CASTLING = {
@@ -71,7 +71,7 @@ CASTLING = {
 }
 
 while True:
-    command = raw_input()
+    command = input()
     #dump(command)
     words = command.split()
     cleaned = ' '.join(words)
@@ -81,13 +81,13 @@ while True:
 
     # Process a UCI command
     if cmd == 'uci':
-        print 'id name CHEKMO-II'
-        print 'id author John E. Comeauin'
-        print 'option name Blitz mode type check default false'
-        print 'uciok'
+        print('id name CHEKMO-II')
+        print('id author John E. Comeauin')
+        print('option name Blitz mode type check default false')
+        print('uciok')
         flush()
     elif cmd == 'isready':
-        print 'readyok'
+        print('readyok')
         flush()
     elif cmd == 'ucinewgame':
         wait_prompt()
@@ -114,7 +114,7 @@ while True:
             move = CASTLING[side].get(move)
         else:
             move = move.replace('-', '').replace('=', '').replace('+', '').replace(':', '').strip().lower()
-        print 'bestmove ' + move
+        print('bestmove ' + move)
         flush()
     elif cleaned == 'setoption name Blitz mode value true':
         wait_prompt()
@@ -125,4 +125,4 @@ while True:
     elif cmd == 'quit':
         sys.exit()
     else:
-        print 'Unknown command: ' + command
+        print('Unknown command: ' + command)
