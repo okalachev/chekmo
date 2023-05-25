@@ -34,10 +34,6 @@ def log(s):
         d.flush()
 
 
-def flush():
-    sys.stdout.flush()
-
-
 def wait_prompt():
     parsed_side = None
     while True:
@@ -87,11 +83,9 @@ while True:
         print('id name CHEKMO-II')
         print('id author John E. Comeauin')
         print('option name Blitz mode type check default false')
-        print('uciok')
-        flush()
+        print('uciok', flush=True)
     elif cmd == 'isready':
-        print('readyok')
-        flush()
+        print('readyok', flush=True)
     elif cmd == 'ucinewgame':
         wait_prompt()
         send('re')
@@ -117,8 +111,7 @@ while True:
             move = CASTLING[side].get(move)
         else:
             move = move.replace('-', '').replace('=', '').replace('+', '').replace(':', '').strip().lower()
-        print('bestmove ' + move)
-        flush()
+        print('bestmove ' + move, flush=True)
     elif cleaned == 'setoption name Blitz mode value true':
         wait_prompt()
         send('bm')
