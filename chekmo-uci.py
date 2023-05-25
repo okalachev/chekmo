@@ -38,7 +38,7 @@ def flush():
 def wait_prompt():
     parsed_side = None
     while True:
-        x = chekmo.stdout.read(1)
+        x = chekmo.stdout.read(1).decode()
         if x == '?':
             break
         if x in ['W', 'B']:
@@ -53,7 +53,7 @@ def send(s):
 
 
 def read_line():
-    return chekmo.stdout.readline()
+    return chekmo.stdout.readline().decode()
 
 
 master, slave = pty.openpty()  # create a pseudoterminal to control pdp8 simulator
