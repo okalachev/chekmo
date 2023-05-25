@@ -15,6 +15,7 @@ import sys
 import atexit
 
 
+LOG = False
 pdir = os.path.dirname(os.path.realpath(__file__))
 
 
@@ -26,9 +27,11 @@ def which(pgm):
             return p
 
 
-def dump(s):
-    with open(pdir + '/dump.txt', 'a') as d:
+def log(s):
+    if not LOG: return
+    with open(pdir + '/log.txt', 'a') as d:
         d.write(s + '\n')
+        d.flush()
 
 
 def flush():
@@ -63,7 +66,7 @@ pin = os.fdopen(master, 'w')
 atexit.register(lambda: chekmo.kill())  # kill pdp8 simulator process on exit
 
 print('CHEKMO-II UCI ADAPTER')
-#dump('run with ' + ' '.join(sys.argv))
+log('=========\nrun with ' + ' '.join(sys.argv))
 
 CASTLING = {
     'W': {'O-O-O': 'e1c1', 'O-O': 'e1g1'},
@@ -72,7 +75,7 @@ CASTLING = {
 
 while True:
     command = input()
-    #dump(command)
+    log(command)
     words = command.split()
     cleaned = ' '.join(words)
     if len(words) == 0:
